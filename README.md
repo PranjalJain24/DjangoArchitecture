@@ -33,6 +33,11 @@ The MVT (Model View Template) is a software design pattern. It is a collection o
 The Template is a presentation layer which handles User Interface part completely. The View is used to execute the business logic and interact with a model to carry data and renders a template.
 
 IMAGE
+Here, a user requests for a resource to the Django, Django works as a controller and check to the available resource in URL.
+
+If URL maps, a view is called that interact with model and template, it renders a template.
+
+Django responds back to the user and sends a template as a response.
 
 
 So say a user will enter a URL in their browser, that request will go through the internet protocols, to your server, which will call Django. Django will then process the given URL path, and if it matches an URL path you have explicitly stated, it will call the Controller, which will then perform a certain action, such as get an entry from your Model(database) and then render a View(ie: JSON text, HTML/CSS/JavaScript Web page).

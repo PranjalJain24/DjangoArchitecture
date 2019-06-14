@@ -29,7 +29,7 @@ Thus our Python code will be in views and models and HTML code will be in templa
 
 ![alt text](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/django-mvt-based-control-flow.png "Django Architecture")
 
-Here, a user requests for a resource to the Django, Django works as a controller and check to the available resource in URL. If URL maps, a view is called that interact with model and template, it renders a template. Django responds back to the user and sends a template as a response.
+Here, a user requests for a resource to the Django, Django works as a controller and check to the avai,lable resource in URL. If URL maps, a view is called that interact with model and template, it renders a template. Django responds back to the user and sends a template as a response.
 
 ### Django Apps and Core Files
 
@@ -45,8 +45,7 @@ Now you are ready to start your new project.
 $ python manage.py runserver
 $ python manage.py startapp myapp
 ```
-This will start your project and the Django development server, a lightweight Web server written purely in Python and also your app inside the project. 
-
+This will start your project and the Django development server, a lightweight Web server written purely in Python and also your app inside the project. Go to link — http://127.0.0.1:8000/ You will find your server up and Running !!!
 
 A typical Django project structure will look like this:
 ```
@@ -78,13 +77,27 @@ MySite/
             0001_initial.py
             
 ```
+
 All the files under myapp/ describe the Django app named myapp.
 
-1. ```myapp/models.py``` is the Model, or where you define your database. Take a blogging website for example. At its very minimum, you would have a table of blog posts and a table of comments. Each blog post has a title, author, date, and its contents, while comments have the same thing too.
-2. ```myapp/views.py``` is the Controller. Um, but why is the controller called views? Here’s a quick answer in the official documentation if you’d like to know. Inside views.py you will define different functions/classes( Django offers support for both but most people still use functions) A function defines what happens when a certain URL is accessed and an HTTP request is made the server. Common actions would be to query the database for records and render a certain HTML template file.
-3. Everything under ```myapp/templates/myapp/``` are templates or HTML files that define your View. When a function in views.py renders an HTML file, it can pass objects such as a list of comments in which you can use special syntax to display those comments. Within each template, you can get static files like CSS, Javascript files, or images to give the webpage life.
-4. ```urls.py``` is the URL configuration file. This is the file that allows you to map a certain URL to a certain function in views.py. Let’s say you have a server receiving requests from the domain mydomain.com. If you go to mydomain.com/about-us, a certain function such as aboutus() will generate a response. Django will also allow you include important information in the URL. An example would be if you wanted to get a blog post with an id of 4. You make Django send the number "4" to a function named blogpost(blog_id) when you go tomydomain.com/blogs/4/and
+1. ```manage.py```- A command-line utility for executing Django commands from within your project and allows you to run administrative tasks like runserver, createsuperuser, migrations of your database models. It directs the program to ```settings.py``` file.
 
+2. ```settings.py``` — This is the master configuration file for your project in which you will be connecting our PostgreSQL database. You can configure Middle wares, Installed Apps, LDAP(Light Weight Directory Access Protocol) Settings, Django Email Settings, Production Settings Static and Media Files Root Directory through this file only.
+```
+DATABASES = {
+     ‘default’: {
+            ‘ENGINE’: ‘django.db.backends.sqlite3’,
+            ‘NAME’: os.path.join(BASE_DIR, ‘db.sqlite3’),
+      }
+}
+```
+If you want to connect any other database connection you will have to make necesary changes in this like add user, password, etc.
 
+3. ```myapp/models.py``` is the Model, or where you define your database. This file is used to write Class based Models for our Django Applications.This will be the blueprint of our database design ,relationships and attribute constraints.
 
+4. ```myapp/views.py``` is the Controller. Um, but why is the controller called views? Inside views.py you will define different functions/classes. A function defines what happens when a certain URL is accessed and an HTTP request is made the server. Common actions would be to query the database for records and render a certain HTML template file.
+You will be defining our Class Based List Views , CustomFilter Views and Detail Views for our Django Models through Serializers using Django Rest Framework. These are the classes which will be actually handling the HTTP Requests.
 
+5. Everything under ```myapp/templates/myapp/``` are templates or HTML files that define your View. When a function in views.py renders an HTML file, it can pass objects such as a list of comments in which you can use special syntax to display those comments. Within each template, you can get static files like CSS, Javascript files, or images to give the webpage life.
+
+6. ```urls.py``` is the URL configuration file. This is the file that allows you to map a certain URL to a certain function in views.py. This file can define the routes/API Endpoints itself or You can just write your Endpoints in the respective django application and include the application urls.py file here. This file will be the single point of source for finding Endpoints once the HTTP Requests come from the client side.

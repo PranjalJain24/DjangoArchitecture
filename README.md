@@ -4,13 +4,12 @@
 
 Web-Framework
 
-Whenever you type in a URL, your browser makes a request to a server, which will send files — generally HTML — and your browser will process it and display it. At the end of the day, no matter how complicated your web application is, all it does is send files due to a request.
-
-A web framework provides a toolkit of reusable components allowing developers to focus on building their app rapidly without reinventing the wheel. Problems like how do you map a certain URL to a set of code or how do you dynamically create a page according to some data from your database arise in every web app. A web framework will allow you to do that quickly so you can focus on writing the code for the given URL or on the contents of a certain page. These two main problems are called routing and templating, respectively, and are main components in many web frameworks.
+Whenever you type in a URL, your browser makes a request to a server, which will send files — generally HTML — and your browser will process it and display it. Thus all the Web Applications send the files according to the request. While making those applications developers face problems like how do you map a certain URL to a set of code or how do you dynamically create a page according to some data from your database arise in every web app.  These two main problems are called routing and templating, respectively, and are main components in many web frameworks.
+So basically a web framework provides a toolkit of reusable components allowing developers to focus on building their app rapidly without reinventing the wheel.  A web framework will allow you to do things quickly so you can focus on writing the code for the given URL or on the contents of a certain page.
 
 Note: Front-end web frameworks are entirely different
 
-Django is one of the most popular and huge open-source web frameworks. It is written in python and companies like Instagram, Doordash, and Disqus use it in their systems, which hopefully is enough to show that Django is robust and scalable.
+Django is one of the most popular and huge open-source web frameworks. It is written in python and companies like Instagram, Doordash, and Disqus use it in their systems.
 
 Django Architecture
 Django follows a Model-View-Controller(MVC) architecture, which is split up into three different parts:
@@ -41,4 +40,37 @@ Django responds back to the user and sends a template as a response.
 
 
 So say a user will enter a URL in their browser, that request will go through the internet protocols, to your server, which will call Django. Django will then process the given URL path, and if it matches an URL path you have explicitly stated, it will call the Controller, which will then perform a certain action, such as get an entry from your Model(database) and then render a View(ie: JSON text, HTML/CSS/JavaScript Web page).
+
+
+```
+MySite/
+    manage.py
+    MySite/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+    myapp/
+        views.py
+        models.py
+        __init__.py
+        admin.py
+        tests.py
+        urls.py
+        static/ 
+            myapp/
+                style.css
+                index.js
+                background.jpg
+        templates/
+             index.html
+             aboutus.html
+             post.html 
+        migrations/
+            __init__.py
+            0001_initial.py
+            
+```
+
+
 

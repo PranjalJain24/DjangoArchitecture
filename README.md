@@ -27,7 +27,7 @@ The template is a HTML file mixed with Django Template Language (DTL).Template r
  It uses the terminology Templates for Views and Views for Controller.
 Thus our Python code will be in views and models and HTML code will be in templates.
 
-![alt text](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/django-mvt-based-control-flow.png "Django Architecture")
+![django-mvt-based-control-flow](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/django-mvt-based-control-flow.png "Django Architecture")
 
 Here, a user requests for a resource to the Django, Django works as a controller and check to the avai,lable resource in URL. If URL maps, a view is called that interact with model and template, it renders a template. Django responds back to the user and sends a template as a response.
 
@@ -80,9 +80,9 @@ MySite/
 
 All the files under myapp/ describe the Django app named myapp.
 
-1. ```manage.py```- A command-line utility for executing Django commands from within your project and allows you to run administrative tasks like runserver, createsuperuser, migrations of your database models. It directs the program to ```settings.py``` file.
+* ```manage.py```- A command-line utility for executing Django commands from within your project and allows you to run administrative tasks like runserver, createsuperuser, migrations of your database models. It directs the program to ```settings.py``` file.
 
-2. ```settings.py``` — This is the master configuration file for your project in which you will be connecting our PostgreSQL database. You can configure Middle wares, Installed Apps, LDAP(Light Weight Directory Access Protocol) Settings, Django Email Settings, Production Settings Static and Media Files Root Directory through this file only.
+* ```settings.py``` — This is the master configuration file for your project in which you will be connecting our PostgreSQL database. You can configure Middle wares, Installed Apps, LDAP(Light Weight Directory Access Protocol) Settings, Django Email Settings, Production Settings Static and Media Files Root Directory through this file only.
 ```
 DATABASES = {
      ‘default’: {
@@ -91,13 +91,13 @@ DATABASES = {
       }
 }
 ```
-If you want to connect any other database connection you will have to make necesary changes in this like add user, password, etc.
+SQLITE3 is the default database used. If you want to connect to any other database connection you will have to make necesary changes in this like engine, name, add user, add password, etc.
 
-3. ```myapp/models.py``` is the Model, or where you define your database. This file is used to write Class based Models for our Django Applications.This will be the blueprint of our database design ,relationships and attribute constraints.
+* ```myapp/models.py``` is the Model, or where you define your database. This file is used to write Class based Models for our Django Applications.This will be the blueprint of our database design ,relationships and attribute constraints.
 
-4. ```myapp/views.py``` is the Controller. Um, but why is the controller called views? Inside views.py you will define different functions/classes. A function defines what happens when a certain URL is accessed and an HTTP request is made the server. Common actions would be to query the database for records and render a certain HTML template file.
+* ```myapp/views.py``` is the Controller. Um, but why is the controller called views? Inside views.py you will define different functions/classes. A function defines what happens when a certain URL is accessed and an HTTP request is made the server. Common actions would be to query the database for records and render a certain HTML template file.
 You will be defining our Class Based List Views , CustomFilter Views and Detail Views for our Django Models through Serializers using Django Rest Framework. These are the classes which will be actually handling the HTTP Requests.
 
-5. Everything under ```myapp/templates/myapp/``` are templates or HTML files that define your View. When a function in views.py renders an HTML file, it can pass objects such as a list of comments in which you can use special syntax to display those comments. Within each template, you can get static files like CSS, Javascript files, or images to give the webpage life.
+* Everything under ```myapp/templates/myapp/``` are templates or HTML files that define your View. When a function in views.py renders an HTML file, it can pass objects such as a list of comments in which you can use special syntax to display those comments. Within each template, you can get static files like CSS, Javascript files, or images to give the webpage life.
 
-6. ```urls.py``` is the URL configuration file. This is the file that allows you to map a certain URL to a certain function in views.py. This file can define the routes/API Endpoints itself or You can just write your Endpoints in the respective django application and include the application urls.py file here. This file will be the single point of source for finding Endpoints once the HTTP Requests come from the client side.
+* ```urls.py``` is the URL configuration file. This is the file that allows you to map a certain URL to a certain function in views.py. This file can define the routes/API Endpoints itself or You can just write your Endpoints in the respective django application and include the application urls.py file here. This file will be the single point of source for finding Endpoints once the HTTP Requests come from the client side.

@@ -16,9 +16,9 @@ Django is one of the most popular and huge open-source web frameworks. It is wri
 
 Django follows a **_Model-View-Controller(MVC)_** architecture, which is split up into three different parts:
 
-The **_Model_** is the logical data structure behind the entire application and is represented by a database(generally relational databases such as MySql, Postgres).
-The **_View_** is the user interface — what you see in your browser when you visit a website. These are represented by HTML/CSS/Javascript files.
-The **_Controller_** is the middleman that connects the view and model together, meaning that it is the one passing data from the model to the view.
+* The **_Model_** is the logical data structure behind the entire application and is represented by a database(generally relational databases such as MySql, Postgres).
+* The **_View_** is the user interface — what you see in your browser when you visit a website. These are represented by HTML/CSS/Javascript files.
+* The **_Controller_** is the middleman that connects the view and model together, meaning that it is the one passing data from the model to the view.
 With MVC, your application will revolve around the model—either displaying it or manipulating it.
 
 Django is mainly an MTV (Model-Template-View) framework. The **_Model-View-Template (MVT)_** is slightly different from MVC. In fact the main difference between the two patterns is that Django itself takes care of the Controller part (Software Code that controls the interactions between the Model and View), leaving us with the template. 

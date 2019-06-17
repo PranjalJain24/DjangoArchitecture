@@ -41,7 +41,8 @@ python -m venv <venv-name>
 .\<venv-name>\Scripts\activate
 ```
 Now you are ready to start your new project. 
-``` $ django-admin startproject MySite
+```
+$ django-admin startproject MySite
 $ python manage.py runserver
 $ python manage.py startapp myapp
 ```

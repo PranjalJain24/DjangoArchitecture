@@ -31,6 +31,17 @@ Thus our Python code will be in views and models and HTML code will be in templa
 
 Here, a user requests for a resource to the Django, Django works as a controller and check to the avai,lable resource in URL. If URL maps, a view is called that interact with model and template, it renders a template. Django responds back to the user and sends a template as a response.
 
+### Django Request and Response Flow
+
+#### The Web Server & WSGI:
+When you hit enter in your browser to load a page, your request makes its way through the internet. This server needs to know what to do with what you just sent it. That’s a job for the Web Server Gateway Interface, or WSGI. All WSGI does is take your request and give you back a response. Django has this WSGI layer.
+
+#### Middleware:
+![Request-Response!!](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/wsgi_middleware.png "Request-Response!!")
+Middleware shows up multiple times in between the two WSGI parts. Django middleware is a really small, light-weight plugin that modifies the requests that come in and the responses that go out.
+Middleware comes in five flavors – request middleware, view middleware, error middleware, template response middleware, and response middleware. The order your define your middleware in your settings file matters.
+The request and view middlewares get processed first and in order. The exception, template response and response middleware get executed in reverse order after the view.
+
 ### Django Apps and Core Files
 
 Any Django project will have at least one Django app. A Django project encompasses the application and all its components, while a Django app is a sub-container of the application with its own functionality that, in theory, may be reusable in another application without much modification. For simplicity’s sake, we will create one app called ```myapp``` under a Django project called ```MySite```.
@@ -102,3 +113,42 @@ You will be defining our Class Based List Views , CustomFilter Views and Detail 
 * Everything under ```myapp/templates/myapp/``` are templates or HTML files that define your View. When a function in views.py renders an HTML file, it can pass objects such as a list of comments in which you can use special syntax to display those comments. Within each template, you can get static files like CSS, Javascript files, or images to give the webpage life.
 
 * ```urls.py``` is the URL configuration file. This is the file that allows you to map a certain URL to a certain function in views.py. This file can define the routes/API Endpoints itself or You can just write your Endpoints in the respective django application and include the application urls.py file here. This file will be the single point of source for finding Endpoints once the HTTP Requests come from the client side.
+
+### Django Object-Relational Mapper. 
+The Django web framework includes a default object-relational mapping layer (ORM) that can be used to interact with application data from various relational databases. Django uses its ORM mappers to map objects to database tables. An ORM or object relational mmapper is a code library which helps you manipulate the data from a database using the object-oriented paradigm. The main databases that Django works on are PostgreSQL,MySQL, SQLite, Oracle. It can also work with otherdatabases using the third party drivers.
+
+We take an example of PollsApp to understand this feature of Django. In that we have two models: Question  and Choice in app called polls. To make changes in your database run these commands on your local terminal:
+```
+python manage.py shell
+>>> from polls.models import Choice, Question  # Import the model classes.
+
+# To display all the Questions in the system:
+>>> Question.objects.all()
+
+# Create a new Question.
+>>> from django.utils import timezone
+>>> q = Question(question_text="Is this my third Question?", pub_date=timezone.now())
+
+# Save the object into the database. You have to call save() explicitly.
+>>> q.save()
+
+#Set choices for question having id=3: 
+>>> q = Question.objects.get(pk=3)
+
+# Display any choices from the related object set -- none so far.
+>>> q.choice_set.all()
+<QuerySet []>
+
+# Create two choices.
+>>> q.choice_set.create(choice_text='Yes', votes=0)
+<Choice: Yes>
+>>> q.choice_set.create(choice_text='No', votes=0)
+<Choice: No>
+
+#Let's delete the object from the database.
+>>>
+>>> q.delete()
+(1, {'polls.Question': 1})
+>>>
+This command removes the question with ID 1 from the database. However, it is still exists inside the shell.
+```

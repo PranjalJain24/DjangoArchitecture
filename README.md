@@ -40,8 +40,57 @@ When you hit enter in your browser to load a page, your request makes its way th
 ![Request-Response!!](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/wsgi_middlewares.png "Logo Title Text 2")
 
 Middleware shows up multiple times in between the two WSGI parts. Django middleware is a really small, light-weight plugin that modifies the requests that come in and the responses that go out.
-Middleware comes in five flavors – request middleware, view middleware, error middleware, template response middleware, and response middleware. The order your define your middleware in your settings file matters.
-The request and view middlewares get processed first and in order. The exception, template response and response middleware get executed in reverse order after the view.
+Middleware comes in five flavors – request middleware, view middleware, error middleware, template response middleware, and response middleware. 
+
+#### Flow in Django:
+
+When you run the project by ```python manage.py runserver``` it directs from ```manage.py``` page to ```settings.py``` as we have included this in ```manage.py``` file:
+```
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecom.settings')
+```
+Post that it is directed to ```<project>/urls.py``` file from where it gets all the views.
+```ROOT_URLCONF = 'ecom.urls'```
+Now in ```<project>/urls.py``` we add various url patterns linking to their respective views directly or we can include the app's url which further has url patterns linking to the views corresponding to that particular app only:
+```
+urlpatterns = [   
+    path('Product/', include('Product.urls')),
+    path('courses/', include('courses.urls')),
+    path("home",home_view),
+    path("about",about_view) 
+]
+```
+After getting into the views which can be either function based or class based, Django directs it to templates that we include which in turn give the response. A snippet showing both the types:
+```
+def product_list_view(request):
+    queryset = Product.objects.all() #list of objects
+    context={
+        "object_list": queryset
+    }
+    return render(request,"products/product_list.html",context)
+
+class CourseListView(View):
+    template_name = 'courses/course_list.html'
+    queryset = Course.objects.all()
+    
+    def get_queryset(self):
+        return self.queryset
+    
+    def get(self, request, *args, **kwargs):
+        context = {'object_list':self.get_queryset()}
+        return render(request, self.template_name, context)
+```
+Or the views directly give the response to Django Server:
+```
+from django.http import HttpResponse
+ 
+def index(request):
+    return HttpResponse('Hey There!!')
+```
+Django's models provide a simple mapping to the underlying database structure. Django uses a model to execute SQL behind the scenes to return Python data structures – which Django calls QuerySets.
+```  
+class Course(models.Model):
+    title = models.CharField(max_length=120)
+```
 
 ### Django Apps and Core Files
 

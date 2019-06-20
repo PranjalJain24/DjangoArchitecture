@@ -27,7 +27,7 @@ The template is a HTML file mixed with Django Template Language (DTL).Template r
  It uses the terminology Templates for Views and Views for Controller.
 Thus our Python code will be in views and models and HTML code will be in templates.
 
-![Django Architecture!!](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/django-mvt-based-control-flow.png "Logo Title Text 1")
+![alt text](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/django-mvt-based-control-flow.png "Logo Title Text 1")
 
 Here, a user requests for a resource to the Django, Django works as a controller and check to the avai,lable resource in URL. If URL maps, a view is called that interact with model and template, it renders a template. Django responds back to the user and sends a template as a response.
 
@@ -37,7 +37,7 @@ Here, a user requests for a resource to the Django, Django works as a controller
 When you hit enter in your browser to load a page, your request makes its way through the internet. This server needs to know what to do with what you just sent it. That’s a job for the Web Server Gateway Interface, or WSGI. All WSGI does is take your request and give you back a response. Django has this WSGI layer.
 
 #### Middleware:
-![Request-Response!!](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/wsgi_middlewares.png "Logo Title Text 2")
+![alt text](https://github.com/PranjalJain24/DjangoArchitecture/edit/master/wsgi_middlewares.png "Logo Title Text 2")
 
 Middleware shows up multiple times in between the two WSGI parts. Django middleware is a really small, light-weight plugin that modifies the requests that come in and the responses that go out.
 Middleware comes in five flavors – request middleware, view middleware, error middleware, template response middleware, and response middleware. 
